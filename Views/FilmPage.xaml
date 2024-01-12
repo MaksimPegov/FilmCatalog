@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FilmCatalog.Views.FilmPage"
+             Title="Film Info">
+    <ScrollView>
+    <Grid HorizontalOptions="Center" ColumnSpacing="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="{Binding ImageUrl}" HeightRequest="600" MaximumWidthRequest="500" Aspect="AspectFit" Grid.Row="0" Grid.Column="0" Margin="0, 50, 0, 0"/>
+        
+        <StackLayout VerticalOptions="CenterAndExpand" Spacing="20" Grid.Row="0" Grid.Column="1">
+            <StackLayout Spacing="5">
+                <Label Text="Film Title" FontSize="Medium" />
+        
+                <Label x:Name="filmTitle" Text="{Binding Title}" FontSize="40" />
+            </StackLayout>
+        
+            <StackLayout Spacing="5">
+                <Label Text="Director" FontSize="Medium" />
+        
+                <Label x:Name="filmDirector" Text="{Binding Director}" FontSize="30" />
+            </StackLayout>
+        
+            <StackLayout Spacing="5">
+                <Label Text="Year" FontSize="Medium" />
+        
+                <Label x:Name="filmYear" Text="{Binding Year}" FontSize="30" />
+            </StackLayout>
+        
+            <StackLayout Spacing="5">
+                <Label Text="Rating" FontSize="Medium"/>
+        
+                <Label x:Name="filmRaiting" Text="{Binding Rating}" FontSize="30"/>
+            </StackLayout>
+        
+            <StackLayout Spacing="5">
+                <Label Text="Description" FontSize="Medium"/>
+        
+                <Editor x:Name="filmAbout"
+                        Text="{Binding Description}"
+                        FontSize="20"
+                        WidthRequest="500"
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        AutoSize="TextChanges"
+                        IsReadOnly="True" />
+            </StackLayout>
+        </StackLayout>
+        
+        <Label Text="Comments:" FontSize="Large" Grid.Row="1" Margin="0, 30, 0, 10"/>
+            
+        <ListView 
+            x:Name="commentsListView" 
+            HeightRequest="500" 
+            Grid.Row="2" 
+            Grid.ColumnSpan="2" 
+            BackgroundColor="Transparent"
+            RowHeight="60"
+            SelectionMode="None"
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10" VerticalOptions="Center">
+                            <Label Text="{Binding Text}" />
+                            <Label Text="{Binding Rating, StringFormat='Rating: {0}'}" TextColor="Gray"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button
+            Grid.Row="1"
+            Grid.ColumnSpan="2" 
+            x:Name="addCommentButton"
+            Text="Leave a comment"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Clicked="AddCommentButton_OnClicked"
+            />
+    </Grid>
+    </ScrollView>
+</ContentPage>

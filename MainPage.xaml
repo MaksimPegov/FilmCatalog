@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FilmCatalog.MainPage">
+
+    <Grid>
+        <ListView 
+            x:Name="filmList" 
+            BackgroundColor="Transparent"
+            RowHeight="300"
+            ItemTapped="FilmList_OnItemTapped"
+            ItemSelected="FilmList_OnItemSelected"
+            HorizontalOptions="Center"
+        >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="50, 10, 50, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding ImageUrl}" HeightRequest="200" WidthRequest="200" />
+
+                            <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
+                                <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                <Label Text="{Binding Rating, StringFormat='Rating: {0}'}" />
+                            </StackLayout>
+
+                            <Button Grid.Column="2" Text="Delete" BackgroundColor="DarkGray" TextColor="White" HorizontalOptions="End" VerticalOptions="Center" Command="{Binding Path=BindingContext.RemoveFilmCommand, Source={x:Reference filmList}}" CommandParameter="{Binding .}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <Button
+            Text="+ Add Film"
+            BackgroundColor="Blue"
+            TextColor="White"
+            CornerRadius="20"
+            WidthRequest="100"
+            HeightRequest="40"
+            HorizontalOptions="Start"
+            VerticalOptions="End"
+            Margin="20"
+            Clicked="AddFilm_OnClicked"
+            TranslationX="10"
+            TranslationY="-10" />
+    </Grid>
+
+</ContentPage>

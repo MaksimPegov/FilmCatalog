@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             x:Class="FilmCatalog.Views.ComentModal"
+             BackgroundColor="#50808080"
+             CloseWhenBackgroundIsClicked="False"
+             >
+    
+    <StackLayout 
+        BackgroundColor="Black"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        WidthRequest="500"
+        Spacing="40"
+        Padding="50"
+        
+        >
+        
+        <Entry x:Name="CommentEntry" Placeholder="1-100 symbols (example: Film is suuuus!)" MaxLength="100"/>
+        
+        <Entry x:Name="RatingEntry" Placeholder="0-10 (example: 7.5)" MaxLength="3"/>
+        <Label x:Name="Warning" Text="* Invalid rating or comment " TextColor="IndianRed" IsVisible="False"/>
+        
+        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="40">
+            <Button x:Name="CloseBtn" Text="Cancel" Clicked="CloseBtn_OnClicked"/>
+            <Button x:Name="Comment" Text="Comment" Clicked="Comment_OnClicked"/>
+        </HorizontalStackLayout>
+    </StackLayout>
+</mopups:PopupPage>
